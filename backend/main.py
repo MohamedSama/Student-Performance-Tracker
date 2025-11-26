@@ -1,20 +1,23 @@
+# backend/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from model import predict_next_exam
+from regression import predict_next_score
 
-app = FastAPI()
+app = FastAPI(title="Student Performance Predictor")
 
+# Allow requests from anywhere (for frontend)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
-class ScoreData(BaseModel):
-    scores: list
+class ScoresRequest(BaseModel):
+    previous_scores: list[float]
 
 @app.post("/predict")
-def predict(data: ScoreData):
-    return predict_next_exam(data.scores)
+def predict_score(data: ScoresRequest):
+    predicted_value = predict_next_score(data.previous_scores)
+    return {"predicted_score": predicted_value}
