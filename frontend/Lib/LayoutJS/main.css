@@ -1,0 +1,280 @@
+body, html {
+    height: 100% !important;
+}
+resizer-lt {
+    background-color: var(--color-7);
+    display: grid;
+    place-items: center;
+    justify-content: center;
+}
+resizer-lt:hover, resizer-lt:active, resizer-lt:hover > divider-lt, resizer-lt:active > divider-lt {
+    background-color: var(--color-special);
+}
+[orient="right"] > resizer-lt > divider-lt, [orient="left"] > resizer-lt > divider-lt {
+    left: 50%;
+}
+[orient="top"] > resizer-lt > divider-lt, [orient="bottom"] > resizer-lt > divider-lt {
+    top: 50%;
+}
+bar-lt {
+    background-color: var(--color-8);
+    color: var(--color-5);
+    border-top: solid;
+    border-bottom: solid;
+    border-width: thin;
+    gap: 5px;
+}
+layout-lt {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+holder-lt, bar-lt, resizer-lt, content-lt, divider-lt {
+    position: absolute;
+}
+
+[orient="right"], [orient="left"] {
+    display: flex;
+    flex-direction: row;
+    /* * {
+        } */
+    }
+[orient="right"] > holder-lt, [orient="left"] > holder-lt, [orient="right"] > bar-lt, [orient="left"] > bar-lt {
+    height: 100%;
+}
+[orient="bottom"] > holder-lt, [orient="top"] > holder-lt, [orient="bottom"] > bar-lt, [orient="top"] > bar-lt {
+    width: 100%;
+}
+[orient="bottom"] {
+    display: flex;
+    flex-direction: column;
+    /* * {
+        width: 100%;
+    } */
+}
+[orient="top"] {
+    display: flex;
+    flex-direction: column-reverse;
+    /* * {
+        width: 100%;
+    } */
+}
+bar-lt[type="header"], bar-lt[type="footer"] {
+    height: 27px;
+    width: 100%;
+    display: flex;
+    place-items: center;
+}
+
+bar-lt[type="sidebar"] {
+    height: 100%;
+    width: 27px;
+    border-top: none;
+    border-bottom: none;
+    border-left: solid;
+    border-right: solid;
+    border-width: thin;
+
+}
+[orient="right"] > resizer-lt, [orient="left"] > resizer-lt {
+    height: 100%;
+    width: 3px;
+    cursor: e-resize;
+}
+[orient="bottom"] > resizer-lt, [orient="top"] > resizer-lt {
+    width: 100%;
+    height: 3px;
+    cursor: n-resize;
+}
+divider-lt {
+    background-color: var(--color-5);
+    transition: 50ms;
+}
+[orient="right"] > resizer-lt > divider-lt, [orient="left"] > resizer-lt > divider-lt {
+    height: 100%;
+    width: 1px;
+}
+[orient="bottom"] > resizer-lt > divider-lt, [orient="top"] > resizer-lt > divider-lt {
+    width: 100%;
+    height: 1px;
+}
+holder-lt {
+    background-color: var(--color-7);
+}
+[orient="left"] > content-lt, [orient="right"] > content-lt {
+    height: 100%;
+}
+[orient="bottom"] > content-lt, [orient="top"] > content-lt {
+    width: 100%;
+}
+[display="false"] {
+    display: none;
+}
+holder-lt.lt-backdrop::after, holder-lt.lt-backdrop-still::after, content-lt.lt-backdrop-still::after {
+    content: 'Drop';
+    display: grid;
+    background-color: #ffffff63;
+    height: 100%;
+    opacity: 0%;
+    transition: 50ms;
+    text-align: center;
+    align-content: center;
+    color: #000000;
+    font-size: 20px;
+    font-family: monospace;
+}
+holder-lt.lt-backdrop-still::after, content-lt.lt-backdrop-still::after {
+    content: '' !important;
+    opacity: 2% !important;
+}
+holder-lt.lt-backdrop-active::after {
+    opacity: 95%;
+}
+holder-lt.lt-transition {
+    transition: 80ms;
+}
+
+button-lt {
+    height: 20px;
+    border: none;
+    outline: 0;
+    font-size: 10px;
+    font-family: monospace;
+    color: white;
+    width: max-content;
+    background-color: var(--color-7);
+    border-radius: 3px;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    position: relative;
+}
+button-lt > .button-lt {
+    font-size: 10px;
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    color: white;
+    font-family: monospace;
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+}
+button-lt > .span {
+    height: 24px;
+    width: fit-content;
+}
+button-lt:hover {
+    background-color: var(--color-6);
+}
+button-lt:not([type="toogler"]):active {
+    background-color: var(--color-special);
+}
+button-lt > .option-cont {
+    height: auto;
+    width: 100%;
+    transform: translate(-6px, 10px);
+    display: none;
+    top: 24px;
+    z-index: 10;
+    background-color: var(--color-7);
+    border-radius: 3px;
+    border: solid 1px var(--color-6);
+    padding: 6px;
+    gap: 2px;
+}
+button-lt:focus-within > div.option-cont, button-lt:focus > div.option-cont {
+    display: grid;
+}
+button-lt:focus-within > .button-lt, button-lt:focus > .button-lt {
+    transform: translate(0px, 5px);
+}
+button-lt > .option-cont > .button1 {
+    padding-left: 3px;
+    padding-right: 3px;
+    height: 30px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-radius: 2.5px;
+    outline: 0;
+    color: white;
+    font-size: 10px;
+    font-family: monospace;
+}
+button-lt > .option-cont > .button1:hover {
+    background-color: var(--color-special);
+}
+button-lt > .label {
+    color: white;
+    font-family: monospace;
+    font-size: 10px;
+}
+button-lt > .value {
+    color: var(--color-6);
+    font-family: monospace;
+    font-size: 9px;
+}
+.lt-hide {
+    display: none;
+}
+button-lt > .button2 {
+    height: 100%;
+    width: fit-content;
+    background-color: var(--color-7);
+    color: white;
+    border: solid var(--color-6) 1px;
+    outline: 0;
+}
+button-lt > .button2:hover {
+    background-color: var(--color-6);
+}
+button-lt > .button2.active {
+    background-color: var(--color-special) !important;
+}
+button-lt[type="selector-2"] {
+    display: flex;
+    padding: 0;
+    height: 22px;
+}
+button-lt[type="selector-2"] > .button2:nth-child(1) {
+    border-radius: 3px 0 0 3px;
+}
+button-lt[type="selector-2"] > .button2:nth-last-child(1) {
+    border-radius: 0 3px 3px 0;
+}
+button-lt[type="toogler"] {
+    border-radius: 50px;
+    height: 15px;
+    width: 18px;
+    background-color: var(--color-5);
+    position: relative;
+    box-shadow: inset 0 0 5px 1px black, 0 0 .5px black;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+button-lt[state="true"] > .round {
+    background-color: var(--color-special) !important;
+    border: none !important;
+}
+button-lt > .round {
+    --off: -2px;
+    --on: 13px;
+    height: 19px;
+    left: var(--off);
+    width: 19px;
+    background-color: var(--color-5);
+    border-radius: 100%;
+    box-shadow: 0 0 3px 0px black, inset 0 0 1px black;
+    position: absolute;
+    filter: brightness(1);
+    transition: 90ms;
+}
+button-lt > .round:hover {
+    filter: brightness(1.25);
+}

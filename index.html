@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./frontend/Lib/LayoutJS/main.css">
+    <link rel="stylesheet" href="./frontend/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./frontend/script.js"></script>
+</head>
+<body>
+    <layout-lt orient="bottom">
+        <bar-lt type="header"></bar-lt>
+        <holder-lt orient="right" id="content-container" name="dash">
+            <bar-lt type="sidebar" id="side-bar">
+                <button class="btn" name="dash">D</button>
+                <button class="btn" name="track">T</button>
+                <button class="btn" name="chat">C</button>
+                <button class="btn" name="document">D</button>
+            </bar-lt>
+            <holder-lt id="bid-cont" orient="bottom" mmsize="150-250" size="180" display="false">
+                <holder-lt name="dash" orient="bottom">
+                    <bar-lt type="header"></bar-lt>
+                    <content-lt>
+                        dash
+                    </content-lt>
+                </holder-lt>
+                <holder-lt name="track" orient="bottom">
+                    <bar-lt type="header">
+                        <div id="track-head-1" class="header-divisions one"></div>
+                        <div id="track-head-2" class="header-divisions two">
+                            <button class="button" id="new-grade-btn">+</button>
+                        </div>
+                    </bar-lt>
+                    <content-lt id="subjects-list"></content-lt>
+                </holder-lt>
+                <holder-lt name="chat" orient="bottom">
+                    <bar-lt type="header"></bar-lt>
+                    <content-lt>
+                        chat
+                    </content-lt>
+                </holder-lt>
+                <holder-lt name="document" orient="bottom">
+                    <bar-lt type="header"></bar-lt>
+                    <content-lt>
+                        document
+                    </content-lt>
+                </holder-lt>
+            </holder-lt>
+            <resizer-lt id="bid-cont-resizer"></resizer-lt>
+            <holder-lt orient="bottom" mmsize="150-i" size="auto" id="cont-cont">
+                <content-lt>
+                    <div class="cont-wins win" name="dash">dash</div>
+                    <div class="cont-wins win" name="track">
+                        <bar-lt type="header" id="canva-header">
+                            <div class="one"></div>
+                            <div class="two">
+                                <button id="predict-btn">Predict</button>
+                            </div>
+                        </bar-lt>
+                        <div id="canva-cont">
+                            <canvas id="canva"></canvas>
+                        </div>
+                    </div>
+                    <div class="cont-wins win" name="chat">chat</div>
+                    <div class="cont-wins win" name="document">document</div>
+                </content-lt>
+            </holder-lt>
+        </holder-lt>
+        <bar-lt type="footer"></bar-lt>
+    </layout-lt>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+#container {
+    display: flex;
+    height: 25px;
+    min-width: 70px;
+    border-radius: 2px;
+    background-color: var(--color2);
+    box-shadow: 0 0 2px black;
+}
+.shift {
+    width: 15px;
+    text-align: center;
+}
+#value-cont {
+    height: 100%;
+    width: max-content;
+    min-width: 40px;
+    display: grid;
+    justify-content: center;
+    #enter {
+        #input {
+            height: 100%;
+            width: fit-content;
+            border: none;
+            outline: 0;
+            margin: 0;
+            background-color: transparent;
+            caret-color: var(--color-contrast1);
+            color: var(--color-contrast1)
+        }
+        #input::-webkit-inner-spin-button, #input::-webkit-outer-spin-button {
+            display: none;
+        }
+    }
+}
+.hide {
+    display: none;
+}
