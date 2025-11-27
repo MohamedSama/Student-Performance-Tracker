@@ -15,7 +15,7 @@
                     %70
         @div#effort-alone
             %effort
-            @input#effort-inp type="range" min="1" max="10" &efforInp
+            @input#effort-inp type="range" min="1" max= &efforInp
         @input#name-inp.second placeholder="Enter.." &inp2
         @button#del-group &delGroup
             @svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
