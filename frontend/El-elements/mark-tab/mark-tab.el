@@ -8,13 +8,15 @@
                 @span
                     %:
         @div#mark-alone
-            %Mark: 
+            @span
+                %Mark: 
             @input#name-inp placeholder="Enter.." &inp
             @div#name-place.second &nameCont2
                 @span#name-txt &name2
                     %70
         @div#effort-alone
-            %effort
+            @span
+                %effort
             @input#effort-inp type="range" min="1" max="10" &efforInp
         @input#name-inp.second placeholder="Enter.." &inp2
         @button#del-group &delGroup
