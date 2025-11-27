@@ -298,7 +298,7 @@ async function fetchPredictedScore(previousScores) {
     }
 }    
 el.id("predict-btn").addEventListener("click", () => {
-    fetchPredictedScore(myChart.config._config.data.datasets[0])
+    fetchPredictedScore(myChart.config._config.data.datasets[0].data)
         .then(predicted => {
             log(predicted)
             myChart.config._config.data.labels.push("Fut.Ex.");
