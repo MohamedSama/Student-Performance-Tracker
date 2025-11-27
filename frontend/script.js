@@ -276,28 +276,34 @@ window.myChart = new Chart(el.id("canva").getContext('2d'), {
     }
 });
 // log(myChart)
-async function getPrediction(studentData) {
+async function fetchPredictedScore(previousScores) {
     try {
-        const response = await fetch("http://localhost:8000/predict", {
+        const response = await fetch("https://student-performance-tracker-99ke.onrender.com/predict", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(studentData)
+            body: JSON.stringify({ previous_scores: previousScores })
         });
 
         if (!response.ok) {
-            throw new Error("Server error: " + response.status);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const result = await response.json();
-        return result; // { predicted_avg: 82.4, suggestion: "Improve math basics..." }
-
-    } catch (err) {
-        console.error("Prediction Error:", err);
+        const data = await response.json();
+        return data.predicted_score;
+    } catch (error) {
+        console.error("Error fetching predicted score:", error);
         return null;
     }
-}
+}    
 el.id("predict-btn").addEventListener("click", () => {
+    fetchPredictedScore([70, 75, 80])
+        .then(predicted => {
+            log(predicted)
+            myChart.config._config.data.labels.push("Fut.Ex.");
+            myChart.config._config.data.datasets[0].data.push(predicted);
+            myChart.update();
+        });
     
 })
