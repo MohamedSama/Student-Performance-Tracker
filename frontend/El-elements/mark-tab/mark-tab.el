@@ -2,12 +2,20 @@
     @div#first-off
         @div#space
         @div#space
-        @div#name-place.first &nameCont
-            @span#name-txt *innerHTML=1 &name
-        @input#name-inp placeholder="Enter.." &inp
-        @div#name-place.second &nameCont2
-            @span#name-txt &name2
-                %70
+        @div#header
+            @div#name-place.first &nameCont
+                @span#name-txt *innerHTML=1 &name
+                @span
+                    %:
+        @div#mark-alone
+            %Mark: 
+            @input#name-inp placeholder="Enter.." &inp
+            @div#name-place.second &nameCont2
+                @span#name-txt &name2
+                    %70
+        @div#effort-alone
+            %effort
+            @input#effort-inp type="range" min="1" max="10" &efforInp
         @input#name-inp.second placeholder="Enter.." &inp2
         @button#del-group &delGroup
             @svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
