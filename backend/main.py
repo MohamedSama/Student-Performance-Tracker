@@ -9,7 +9,10 @@ app = FastAPI(title="Student Performance Predictor")
 # Allow requests from anywhere (for frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://mohamedsama.github.io",
+        "http://localhost:5173",   # optional local dev
+    ],
     allow_methods=["*"],
     allow_headers=["*"]
 )
