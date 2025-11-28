@@ -121,13 +121,15 @@ el.id("new-grade-btn").addEventListener("click", () => {
                 res2[1].reference.gradeCont.parentElement.parentElement.gradeCont = res2[1].reference.gradeCont;
                 res2[1].reference.gradeCont.parentElement.parentElement.gradeCont.copy = org => {
                     setTimeout(() => {
+                        
                         const repl = res2[1].reference.gradeCont.parentElement.parentElement.gradeCont;
                         const ln = repl.childNodes.length;
                         for (let i = 0; i < ln; i++) {
                             const r = repl.childNodes[i];
                             const o = org.childNodes[i];
-                            el.s("div.first > #name-txt", r).innerText = el.s("div.first > #name-txt", o).innerText;
-                            el.s("div.second > #name-txt", r).innerText = el.s("div.second > #name-txt", o).innerText;
+                            el.s("#name-txt", r).innerText = el.s("#name-txt", o).innerText;
+                            el.s("#val-txt", r).innerText = el.s("#val-txt", o).innerText;
+                            el.s("#lt-btn", r).setValue(el.s("#lt-btn", o).getValue());
                         }
                     }, 50);
                 };
@@ -150,6 +152,7 @@ el.id("new-grade-btn").addEventListener("click", () => {
                     }
                 });
                 res2[1].reference.nameCont.addEventListener("click", () => {
+                    el.id("predict-btn").removeAttribute("disabled");
                     const data = [];
                     const labels = [];
                     for (const child of el.qa("#name-place.second", res2[1].reference.gradeCont)) {
@@ -160,6 +163,10 @@ el.id("new-grade-btn").addEventListener("click", () => {
                         labels.push(child.innerText);
                     }
                     myChart.config._config.data.datasets[0].data = data.slice();
+                    window.extraEffortList = [];
+                    for (const child of el.qa("#lt-btn", res2[1].reference.gradeCont)) {
+                        window.extraEffortList.push(parseFloat(child.getValue()));
+                    }
                     myChart.config._config.data.labels = labels.slice();
                     myChart.update();
                 })
@@ -184,9 +191,10 @@ el.id("new-grade-btn").addEventListener("click", () => {
                         mark.append(c[0], c[1].element);
                         res2[1].reference.gradeCont.append(mark);
                         c[1].reference.nameCont.addEventListener("dblclick", () => {
-                            c[1].reference.nameCont.style.display = "none";
-                            c[1].reference.inp.value = c[1].reference.nameCont.innerText;
+                            c[1].reference.name.style.display = "none";
+                            c[1].reference.colonSpan.style.display = "none";
                             c[1].reference.inp.style.display = "grid";
+                            c[1].reference.inp.value = c[1].reference.nameCont.innerText;
                             c[1].reference.inp.focus();
                         });
                         c[1].reference.inp.addEventListener("blur", blur3);
@@ -196,7 +204,8 @@ el.id("new-grade-btn").addEventListener("click", () => {
                         function blur3() {
                             const val = c[1].reference.inp.value;
                             c[1].reference.name.innerHTML = val == "" ? "Subject" : val;
-                            c[1].reference.nameCont.style.display = "grid";
+                            c[1].reference.name.style.display = "grid";
+                            c[1].reference.colonSpan.style.display = "grid";
                             c[1].reference.inp.style.display = "none";
                         }
                         c[1].reference.delGroup.addEventListener("click", () => {
@@ -298,7 +307,14 @@ async function fetchPredictedScore(previousScores) {
     }
 }    
 el.id("predict-btn").addEventListener("click", () => {
-    fetchPredictedScore(myChart.config._config.data.datasets[0].data)
+    el.id("predict-btn").setAttribute("disabled", "true");
+    const dataResult = [];
+    const prev = myChart.config._config.data.datasets[0].data.slice();
+    for (let i = 0; i < prev.length; i++) {
+        dataResult.push(prev[i] - prev[i] * ((window.extraEffortList[i] - 7) / 10))
+    }
+
+    fetchPredictedScore(dataResult)
         .then(predicted => {
             log(predicted)
             myChart.config._config.data.labels.push("Fut.Ex.");

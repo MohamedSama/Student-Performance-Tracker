@@ -1,0 +1,77 @@
+* {
+    color: var(--white-1);
+}
+#the-cont {
+    display: grid;
+    width: 100%;
+    .place-cont {
+        display: flex;
+        height: 20px;
+        width: 100%;
+        button {
+            height: 12px;
+            min-height: 12px;
+            min-width: 12px;
+            width: 12px;
+            margin: 2.5px;
+            border: none;
+            outline: 0;
+            padding: 0;
+            background-color: transparent;
+            font-size: 12px;
+            color: var(--white-0);
+            border-radius: 2px;
+            display: grid;
+            align-content: center;
+            cursor: pointer;
+        }
+        button:hover {
+            color: var(--white-0);
+        }
+        #name-inp {
+            background-color: transparent;
+            display: none;
+            height: 100%;
+            width: calc(100% - 20px);
+            border: none;
+            outline: 0;
+            padding: 0;
+            color: var(--white-1);
+            caret-color: var(--color-special);
+        }
+        #effort-inp {
+            width: 50px;
+        }
+    }
+    .place-cont:hover span {
+        color: var(--white-1) !important;
+    }
+}
+#container-mark:hover {
+    background-color: var(--color-6);
+}
+.second  {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row-reverse;
+}
+.second-alpha  {
+    text-align: end;
+}
+.first  {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+#container-mark {
+    display: flex;
+    border-top: solid 1px var(--color-6);
+    border-bottom: solid 1px var(--color-6);
+}
+#name-place {
+    display: flex;
+}
+.fader {
+    color: var(--white-2);
+}

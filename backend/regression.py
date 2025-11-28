@@ -2,16 +2,27 @@
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-def predict_next_score(prev_scores: list[float]) -> float:
-    if len(prev_scores) < 2:
-        return prev_scores[-1] if prev_scores else 0
+def predict_next_score(prev_scores: list[tuple[float, int]], future_effort: int = 6) -> float:
 
-    X = np.array(range(1, len(prev_scores) + 1)).reshape(-1, 1)
-    y = np.array(prev_scores)
+    if len(prev_scores) < 1:
+        return 0  # no history
+
+    # Build feature matrix and target array
+    X = []
+    y = []
+
+    for i, (mark, effort) in enumerate(prev_scores, start=1):
+        X.append([i, effort])      # test number + effort as features
+        y.append(mark)             # marks as target
+
+    X = np.array(X)
+    y = np.array(y)
 
     model = LinearRegression()
     model.fit(X, y)
 
+    # Predict next score with effort influence
     next_test_number = len(prev_scores) + 1
-    predicted = model.predict([[next_test_number]])
-    return round(float(predicted[0]), 2)
+    predicted_mark = model.predict([[next_test_number, future_effort]])
+
+    return round(float(predicted_mark[0]), 2)
