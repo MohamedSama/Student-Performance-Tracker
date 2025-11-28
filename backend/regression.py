@@ -2,7 +2,7 @@
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-def predict_next_score(prev_scores: list[tuple[float, int]], future_effort: int = 6) -> float:
+def predict_next_score(prev_scores: list[float], future_effort: int = 6) -> float:
 
     if len(prev_scores) < 1:
         return 0  # no history
@@ -11,9 +11,8 @@ def predict_next_score(prev_scores: list[tuple[float, int]], future_effort: int 
     X = []
     y = []
 
-    for i, (mark, effort) in enumerate(prev_scores, start=1):
-        X.append([i, effort])      # test number + effort as features
-        y.append(mark)             # marks as target
+    for i, mark in enumerate(prev_scores, start=1):
+        X.append([i])           # marks as target
 
     X = np.array(X)
     y = np.array(y)
