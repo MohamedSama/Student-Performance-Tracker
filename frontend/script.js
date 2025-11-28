@@ -311,7 +311,7 @@ el.id("predict-btn").addEventListener("click", () => {
     const dataResult = [];
     const prev = myChart.config._config.data.datasets[0].data.slice();
     for (let i = 0; i < prev.length; i++) {
-        dataResult.push(prev[i] - prev[i] * ((window.extraEffortList[i] - 7) / 10))
+        dataResult.push(parseFloat(prev[i] - prev[i] * ((window.extraEffortList[i] - 7) / 10)))
     }
     log(dataResult);
 
