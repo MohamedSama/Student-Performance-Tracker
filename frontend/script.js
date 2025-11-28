@@ -313,6 +313,7 @@ el.id("predict-btn").addEventListener("click", () => {
     for (let i = 0; i < prev.length; i++) {
         dataResult.push(prev[i] - prev[i] * ((window.extraEffortList[i] - 7) / 10))
     }
+    log(dataResult);
 
     fetchPredictedScore(dataResult)
         .then(predicted => {
