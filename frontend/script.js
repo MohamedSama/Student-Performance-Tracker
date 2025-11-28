@@ -323,3 +323,4 @@ el.id("predict-btn").addEventListener("click", () => {
             myChart.config._config.data.datasets[0].data.push(predicted);
             myChart.update();
         });
+    }
