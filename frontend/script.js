@@ -317,10 +317,9 @@ el.id("predict-btn").addEventListener("click", () => {
 
     fetchPredictedScore(dataResult)
         .then(predicted => {
+            predicted = predicted.reduce((n, res) => {res.push(Math.min(n, 99))}, []);
             log(predicted)
             myChart.config._config.data.labels.push("Fut.Ex.");
             myChart.config._config.data.datasets[0].data.push(predicted);
             myChart.update();
         });
-    
-})
